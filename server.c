@@ -29,6 +29,24 @@ void	ft_putnbr(int n)
 		ft_putchar(nb + 48);
 }
 
+int		ft_power(int nb, int power)
+{
+	int i;
+	int result;
+
+	i = 1;
+	result = nb;
+	if (power < 0 || (nb == 0 && power != 0))
+		return (0);
+	else if (power == 0)
+		return (1);
+	while (i < power)
+	{
+		result *= nb;
+		i++;
+	}
+	return (result);
+}
 
 void	ft_putstr(char *str)
 {
@@ -39,12 +57,30 @@ void	ft_putstr(char *str)
 		write(1, &str[i++], 1);
 }
 
+void	receive_char(int signal)
+{
+	static int	i;
+	static char	*str;
+	static char	c;
+
+	if (signal == SIGUSR1)
+		c |= 128 / ft_power(2, i);
+	i++;
+	if (i == 8)
+	{
+		i = 0;
+		
+	}
+
+}
+
 int main(void)
 {
 	ft_putstr("Server PID = ");
 	ft_putnbr(getpid());
 	ft_putstr("\n");
-	pause();
-	ft_putstr("HELLO WORLD\n");
+	signal(SIGUSR1, receive_char);
+	signal(SIGUSR2, receive_char);
+	while (1) ;
 	return (0);
 }
