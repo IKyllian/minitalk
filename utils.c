@@ -6,7 +6,7 @@
 /*   By: kdelport <kdelport@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/06/15 10:25:50 by kdelport          #+#    #+#             */
-/*   Updated: 2021/06/15 10:25:51 by kdelport         ###   ########.fr       */
+/*   Updated: 2021/06/15 10:48:38 by kdelport         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -73,6 +73,8 @@ int	ft_strlen(char *str)
 {
 	int	i;
 
+    if (!str)
+        return (0);
 	i = 0;
 	while (str[i])
 		i++;

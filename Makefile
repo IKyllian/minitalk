@@ -7,13 +7,14 @@ SRCS_SERVER =  server.c \
 		
 
 SRCS_CLIENT = client.c \
-			utils.c
+			utils.c \
+			itoa.c \
 
 OBJS_SERVER = $(SRCS_SERVER:.c=.o)
 OBJS_CLIENT = $(SRCS_CLIENT:.c=.o)
 
 CC = gcc
-FLAGS = -Wextra -Werror -Wall
+FLAGS = -g -Wextra -Werror -Wall
 RM = rm -f
 
 all : $(NAME_SERVER) $(NAME_CLIENT)
