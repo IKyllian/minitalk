@@ -4,6 +4,7 @@
 #include <stdlib.h>
 #include <unistd.h>
 #include <signal.h>
+#include <stdio.h>
 
 typedef struct s_client
 {
@@ -18,6 +19,10 @@ typedef struct s_server
 }				t_server;
 
 void	ft_putstr(char *str);
-
+void	ft_putnbr(int n);
+int		ft_power(int nb, int power);
+void	ft_putstr(char *str);
+int		ft_strlen(char *str);
+int		ft_atoi(const char *nptr);
 
 #endif

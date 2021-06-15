@@ -3,9 +3,11 @@ NAME_SERVER = server
 
 HEADER = minitalk.h
 
-SRCS_CLIENT = client.c
+SRCS_CLIENT = client.c \
+			utils.c
 
-SRCS_SERVER = server.c
+SRCS_SERVER = server.c \
+			utils.c
 
 OBJS_CLIENT = $(SRCS_CLIENT:.c=.o)
 OBJS_SERVER = $(SRCS_SERVER:.c=.o)
@@ -14,7 +16,7 @@ CC = gcc
 FLAGS = -Werror -Wextra -Wall
 RM = rm -f
 
-all : $(NAME_CLIENT) $(NAME_SERVER)
+all : $(NAME_SERVER) $(NAME_CLIENT) 
 
 %.c : %.o $(HEADER)
 	$(CC) $(FLAGS) -c $< -o $@

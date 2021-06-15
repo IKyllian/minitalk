@@ -1,60 +1,36 @@
+/* ************************************************************************** */
+/*                                                                            */
+/*                                                        :::      ::::::::   */
+/*   server.c                                           :+:      :+:    :+:   */
+/*                                                    +:+ +:+         +:+     */
+/*   By: kdelport <kdelport@student.42.fr>          +#+  +:+       +#+        */
+/*                                                +#+#+#+#+#+   +#+           */
+/*   Created: 2021/06/15 09:41:02 by kdelport          #+#    #+#             */
+/*   Updated: 2021/06/15 10:22:33 by kdelport         ###   ########.fr       */
+/*                                                                            */
+/* ************************************************************************** */
+
 #include "minitalk.h"
 
-void	ft_putchar(char c)
-{
-	write(1, &c, 1);
-}
-
-void	ft_putnbr(int n)
-{
-	long nb;
-
-	nb = n;
-	if (nb == -2147483648)
-	{
-		write(1, "-2147483648", 11);
-		return ;
-	}
-	if (nb < 0)
-	{
-		ft_putchar('-');
-		nb *= -1;
-	}
-	if (nb >= 10)
-	{
-		ft_putnbr(nb / 10);
-		ft_putnbr(nb % 10);
-	}
-	else
-		ft_putchar(nb + 48);
-}
-
-int		ft_power(int nb, int power)
+int	join_str(char **str, char c)
 {
 	int i;
-	int result;
+	int size;
+	char *new_str;
 
-	i = 1;
-	result = nb;
-	if (power < 0 || (nb == 0 && power != 0))
+	size = ft_strlen(*str);
+	i = -1;
+	new_str = malloc(sizeof(char) * (size + 2));
+	if (!new_str)
 		return (0);
-	else if (power == 0)
-		return (1);
-	while (i < power)
-	{
-		result *= nb;
-		i++;
-	}
-	return (result);
-}
-
-void	ft_putstr(char *str)
-{
-	int	i;
-
-	i = 0;
-	while (str[i])
-		write(1, &str[i++], 1);
+	while (str[++i])
+		new_str[i] = *str[i];
+	new_str[i++] = c;
+	new_str[i] = 0;
+	if (str)
+		free(str);
+	*str = new_str;
+	return (1);
 }
 
 void	receive_char(int signal)
@@ -69,9 +45,17 @@ void	receive_char(int signal)
 	if (i == 8)
 	{
 		i = 0;
-		
+		if (!c)
+			ft_putstr(str);
+		else
+		{
+			if (!join_str(&str, c))
+			{
+				ft_putstr("Malloc error\n");
+				exit(1);
+			}
+		}	
 	}
-
 }
 
 int main(void)
