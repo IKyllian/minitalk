@@ -6,11 +6,31 @@
 /*   By: kdelport <kdelport@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/06/15 10:16:39 by kdelport          #+#    #+#             */
-/*   Updated: 2021/06/15 16:42:00 by kdelport         ###   ########.fr       */
+/*   Updated: 2021/06/16 12:41:06 by kdelport         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "minitalk.h"
+
+void	choose_sig(char *str, int i, int j, int pid)
+{
+	if (str[i] & 128 / ft_power(2, j))
+	{
+		if (kill(pid, SIGUSR2) == -1)
+		{
+			ft_putstr("Error with Kill function");
+			exit(1);
+		}
+	}
+	else
+	{
+		if (kill(pid, SIGUSR1) == -1)
+		{
+			ft_putstr("Error with Kill function");
+			exit(1);
+		}
+	}
+}
 
 void	send_char(int pid, char *str)
 {
@@ -25,22 +45,7 @@ void	send_char(int pid, char *str)
 		j = 0;
 		while (j < 8)
 		{
-			if (str[i] & 128 / ft_power(2, j))
-			{
-				if (kill(pid, SIGUSR2) == -1)
-				{
-					ft_putstr("Error with Kill function");
-					exit(1);
-				}
-			}
-			else
-			{
-				if (kill(pid, SIGUSR1) == -1)
-				{
-					ft_putstr("Error with Kill function");
-					exit(1);
-				}
-			}
+			choose_sig(str, i, j, pid);
 			j++;
 			usleep(100);
 		}
@@ -55,7 +60,7 @@ void	has_receive(int pid)
 	exit(0);
 }
 
-int main(int argc, char **argv)
+int	main(int argc, char **argv)
 {
 	int		pid;
 	int		client_pid;
@@ -71,13 +76,11 @@ int main(int argc, char **argv)
 		send_char(pid, pid_to_char);
 		free(pid_to_char);
 	}
-	else 
+	else
 	{
 		ft_putstr("Missing argument");
 		return (1);
 	}
-	// while (1)
-	// 	;
 	pause();
 	return (0);
 }

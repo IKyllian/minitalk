@@ -3,12 +3,14 @@ NAME_CLIENT = client
 
 HEADER = minitalk.h
 SRCS_SERVER =  server.c \
-			utils.c
-		
+			./utils/print_utils.c \
+			./utils/str_utils.c \
+			./utils/number_utils.c \
 
 SRCS_CLIENT = client.c \
-			utils.c \
-			itoa.c \
+			./utils/print_utils.c \
+			./utils/str_utils.c \
+			./utils/number_utils.c \
 
 OBJS_SERVER = $(SRCS_SERVER:.c=.o)
 OBJS_CLIENT = $(SRCS_CLIENT:.c=.o)

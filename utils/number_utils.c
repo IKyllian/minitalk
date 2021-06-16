@@ -1,16 +1,57 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   itoh.c                                             :+:      :+:    :+:   */
+/*   number_utils.c                                     :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: kdelport <kdelport@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2021/06/15 15:34:25 by kdelport          #+#    #+#             */
-/*   Updated: 2021/06/15 15:34:30 by kdelport         ###   ########.fr       */
+/*   Created: 2021/06/16 12:46:56 by kdelport          #+#    #+#             */
+/*   Updated: 2021/06/16 13:08:52 by kdelport         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "minitalk.h"
+#include "../minitalk.h"
+
+int	ft_atoi(const char *nptr)
+{
+	int		i;
+	long	nbr;
+	int		sign;
+
+	i = 0;
+	nbr = 0;
+	sign = 1;
+	while ((nptr[i] >= 9 && nptr[i] <= 13) || nptr[i] == 32)
+		i++;
+	if (nptr[i] == '-' || nptr[i] == '+')
+	{
+		if (nptr[i] == '-')
+			sign *= -1;
+		i++;
+	}
+	while (nptr[i] >= 48 && nptr[i] <= 57)
+		nbr = nbr * 10 + (nptr[i++] - 48);
+	return (nbr * sign);
+}
+
+int	ft_power(int nb, int power)
+{
+	int	i;
+	int	result;
+
+	i = 1;
+	result = nb;
+	if (power < 0 || (nb == 0 && power != 0))
+		return (0);
+	else if (power == 0)
+		return (1);
+	while (i < power)
+	{
+		result *= nb;
+		i++;
+	}
+	return (result);
+}
 
 static	int	nbr_length(long nbr)
 {
