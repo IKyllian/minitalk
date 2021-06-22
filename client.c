@@ -6,7 +6,7 @@
 /*   By: kdelport <kdelport@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/06/15 10:16:39 by kdelport          #+#    #+#             */
-/*   Updated: 2021/06/16 12:41:06 by kdelport         ###   ########.fr       */
+/*   Updated: 2021/06/22 12:33:29 by kdelport         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -78,7 +78,7 @@ int	main(int argc, char **argv)
 	}
 	else
 	{
-		ft_putstr("Missing argument");
+		ft_putstr("Error : Arguments");
 		return (1);
 	}
 	pause();
