@@ -6,7 +6,7 @@
 /*   By: kdelport <kdelport@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/06/15 10:16:39 by kdelport          #+#    #+#             */
-/*   Updated: 2021/06/22 12:33:29 by kdelport         ###   ########.fr       */
+/*   Updated: 2021/06/22 13:26:50 by kdelport         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -18,7 +18,7 @@ void	choose_sig(char *str, int i, int j, int pid)
 	{
 		if (kill(pid, SIGUSR2) == -1)
 		{
-			ft_putstr("Error with Kill function");
+			ft_putstr("Invalid PID");
 			exit(1);
 		}
 	}
@@ -26,7 +26,7 @@ void	choose_sig(char *str, int i, int j, int pid)
 	{
 		if (kill(pid, SIGUSR1) == -1)
 		{
-			ft_putstr("Error with Kill function");
+			ft_putstr("Invalid PID");
 			exit(1);
 		}
 	}
